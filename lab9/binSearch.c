@@ -96,7 +96,6 @@ Example : ./a.out dict_1.txt ex_1.txt HTout.txt \n";
     clock_t start1, end1;
 
     int isFound;
-//    printf("The first char in the dict : %s\n",BSA[0]);
 	//-------------------------- Binary Search -----------------------------------------------------//
     fseek(in, 0, SEEK_SET);
     start1 = clock();
@@ -151,7 +150,6 @@ Example : ./a.out dict_1.txt ex_1.txt HTout.txt \n";
     }
 
     inOrder(ROOT_BSA, hout);
-   // fprintf(hout,"\n-------------------\nlinear search\n------------------\n");
    // inOrder(ROOT_LS, hout);
     fclose(hout);
 

@@ -4,8 +4,6 @@ AUTHORS : 15EC250, 15EC251
 DATE : 5-10-2015
 
 */
-
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -76,22 +74,10 @@ int main(int argc, char *argv[]) {
      //Write sorted values to output file
      for (i = 0; i <r ; ++i )
            fprintf(fp,"%d\n",extract_max(a,&N));
-/*	printf("The heap is :\n ");
-	for(i=0;i<N;i++)
-		printf("%d, ",a[i]);
-	printf("\nThe sorted array is:\n");
-	for(i=0;i<r;i++)
-		printf("%d, ",extract_max(a,&N));
-*/
      fclose(fp);
      free(a);
 }
 
-void swap(int*a,int*b){
-	int temp = *a;
-	*a = *b;
-	*b = temp;
-}
 /* 
    Fixes one violation that is on the root 
    fix the problem at the current node and 
@@ -103,14 +89,10 @@ void fix_root_violation(int *A, int i, int N)
 	//i is the position to be fixed 
 	//N is the size of the heap
 	if(i<=(N-1)/2 && LEFT(i)<N && A[LEFT(i)]>A[i]){
-		//swap(&A[LEFT(i)],&A[i]);
 		max = LEFT(i);
-		//fix_root_violation(A,LEFT(i),N);
 	}
 	if(i<=(N-1)/2 && RIGHT(i)<N && A[RIGHT(i)]>A[max] ){
-		//swap(&A[RIGHT(i)],&A[i]);
 		max = RIGHT(i);
-		//fix_root_violation(A,RIGHT(i),N);
 	}
 	if(max!=i){
 		int temp = A[max];
@@ -118,7 +100,6 @@ void fix_root_violation(int *A, int i, int N)
 		A[i] = temp;
 		fix_root_violation(A,max,N);
 	}
-	//int max = A[RIGHT(i)]>A[LEFT(i)]?RIGHT(i):LEFT(i);
 }
 
 /*
@@ -148,8 +129,6 @@ void build_heap(int *A, int N)
 int extract_max(int *A,  int *N)
 {
 	int swap_pos = (*N)-1;
-//	int max = A[0];
-//	swap(&A[0],&A[swap_pos]);
 	int temp = A[0];
 	A[0] = A[swap_pos];
 	A[swap_pos] = temp;

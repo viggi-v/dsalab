@@ -64,10 +64,6 @@ int main(){
 	cp = reverseString(cp,count);	
 	
 	printf("\nReversed string is \n%s",cp);
-    	/*for (i = 0; i < count; i++)
-    		printf("%c",cp[i]);
-	
-	*/
    	printf("\n") ;
 	free(cp);
 }

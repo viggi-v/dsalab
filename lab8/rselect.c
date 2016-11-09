@@ -75,39 +75,28 @@ int main(int argc, char *argv[]) {
      free(a);
 }
 
-int rselect(int A[], int l, int r, int m) 
-{
+int rselect(int A[], int l, int r, int m) {
 	/* TODO Complete the code 
    	 * call the partition function and do a divide and conquer
 	 */
 	if (l>r)
-return;
-else
-{
-
-	int j = partition(A,l,r);
-//	printf("j=%d,m=%d\n",j,m);
-	if(j == m-1)
-		return A[j];
-	else if(j>m-1){
-//		printf("coz j>m\n");
-		rselect(A,0,j-1,m);
-//		printf("coz j>m\n");
-	}
-	else if(j<m-1){	
-//		printf("coz m>j\n");
-		rselect(A,j+1,r,m);
-//		printf("coz m>j\n");
-	}
-}
+        return;
+    else{
+        int j = partition(A,l,r);
+        if(j == m-1)
+            return A[j];
+        else if(j>m-1)
+            rselect(A,0,j-1,m);
+        else if(j<m-1)	
+            rselect(A,j+1,r,m);
+    }
 }
 
 /* 
 This function selects a pivot and partitions 
 the data around that pivot 
 */
-int partition(int A[], int l, int r)
-{
+int partition(int A[], int l, int r){
  	//int piv_index = 0;
    	// TODO Complete the code for the function 
    	// First choose the pivot A[l]

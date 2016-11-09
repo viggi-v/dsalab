@@ -15,62 +15,62 @@ void countSort(int*, int, int);
 
 
 int main(int argc, char *argv[]) {
-      // The main program has two command line 
-      // arguements :- filename that contains the 
-      // integer numbers, number of values in the file
+    // The main program has two command line 
+    // arguements :- filename that contains the 
+    // integer numbers, number of values in the file
 
-      // Check for correct number of command line arguements
-      if(argc < 4) {
-           fprintf(stderr,"Usage is %s <infile> <N> \n",argv[0]);
-           fprintf(stderr,"\t infile - file containing the numbers\n");
-           fprintf(stderr,"\t      N - number of elements in the file\n");
-           fprintf(stderr,"\toutfile - output file stores order statistics\n");
-           
-           exit(1);
-      }
- 
-     //Assign Command line arguements
-     char *infile = argv[1];
-     int N = atoi(argv[2]);
-     char *outfile = argv[3];
-     
-     //Read Input File 
-     int *a = NULL ; //Array to store values read from the file
-     FILE *fp = fopen(infile,"r"); //Open input file
-     if(fp == NULL) {             //check if opening was successful
-           fprintf(stderr,"ERROR: Cannot open file <<%s>> \n",infile);
-           exit(1);
-     }
-     //allocating memory to read the values
-     a = (int*) malloc(N*sizeof(int));
-     
-     int i = 0;
-     // Reading values to the array
-     for (i = 0;i<N && !feof(fp) ; ++i)
-         fscanf(fp,"%d",a+i);
- 
-     //close the file
-     fclose (fp);
+    // Check for correct number of command line arguements
+    if(argc < 4) {
+        fprintf(stderr,"Usage is %s <infile> <N> \n",argv[0]);
+        fprintf(stderr,"\t infile - file containing the numbers\n");
+        fprintf(stderr,"\t      N - number of elements in the file\n");
+        fprintf(stderr,"\toutfile - output file stores order statistics\n");
+         
+        exit(1);
+    }
 
-     if(i<N){
-         printf("Only %d values are read from file ", i);
-         N = i;
-     }
+    //Assign Command line arguements
+    char *infile = argv[1];
+    int N = atoi(argv[2]);
+    char *outfile = argv[3];
 
-	radixSort(a,N);
-	printf("done\n");
-     //Write to the output file
-   	fp = fopen(outfile,"w"); // open output file
-     if(fp == NULL) {         // check if the command was successful
-           fprintf(stderr,"ERROR: Cannot open file <<%s>> \n",outfile);
-           exit(1);
-     }
-     
-     //Write sorted values to output file
-     for (i = 0; i <N ; ++i )
-           fprintf(fp,"%d\n",a[i]);
-     fclose(fp);
-     free(a);
+    //Read Input File 
+    int *a = NULL ; //Array to store values read from the file
+    FILE *fp = fopen(infile,"r"); //Open input file
+    if(fp == NULL) {             //check if opening was successful
+         fprintf(stderr,"ERROR: Cannot open file <<%s>> \n",infile);
+         exit(1);
+    }
+    //allocating memory to read the values
+    a = (int*) malloc(N*sizeof(int));
+
+    int i = 0;
+    // Reading values to the array
+    for (i = 0;i<N && !feof(fp) ; ++i)
+       fscanf(fp,"%d",a+i);
+
+    //close the file
+    fclose (fp);
+
+    if(i<N){
+       printf("Only %d values are read from file ", i);
+       N = i;
+    }
+
+    radixSort(a,N);
+    printf("done\n");
+    //Write to the output file
+    fp = fopen(outfile,"w"); // open output file
+    if(fp == NULL) {         // check if the command was successful
+        fprintf(stderr,"ERROR: Cannot open file <<%s>> \n",outfile);
+        exit(1);
+    }
+
+    //Write sorted values to output file
+    for (i = 0; i <N ; ++i )
+         fprintf(fp,"%d\n",a[i]);
+    fclose(fp);
+    free(a);
 }
 void countSort(int *A, int n, int exponent){
 	int counts[10],i;

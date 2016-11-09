@@ -5,66 +5,66 @@ void merge_sort(int *A, int N);
 void merge_arrays(int *B, int *C, int *A, int Nb, int Nc, int Na);
 
 int main(int argc, char *argv[]) {
-      // The main program has two command line 
-      // arguements :- filename that contains the 
-      // integer numbers, number of values in the file
+    // The main program has two command line 
+    // arguements :- filename that contains the 
+    // integer numbers, number of values in the file
 
-      // Check for correct number of command line arguements
-      if(argc < 4) {
-           fprintf(stderr,"Usage is %s <infile> <N>\n",argv[0]);
-           fprintf(stderr,"\t infile - name of the file that contains the numbers\n");
-           fprintf(stderr,"\t      N - number of elements in the file\n");
-           fprintf(stderr,"\toutfile - output file that stores sorted numbers\n");
-           exit(1);
-      }
- 
-     //Assign Command line arguements
-     char *infile = argv[1];
-     int N = atoi(argv[2]);
-     char *outfile = argv[3];
-     
-     //Read Input File 
-     int *a = NULL ; //Array to store values read from the file
-     FILE *fp = fopen(infile,"r"); //Open input file
-     if(fp == NULL) {             //check if opening was successful
-           fprintf(stderr,"ERROR: Cannot open file <<%s>> \n",infile);
-           exit(1);
-     }
-     //allocating memory to read the values
-     a = (int*) malloc(N*sizeof(int));
-     
-     int i = 0;
-     // Reading values to the array
-     for (i = 0;i<N && !feof(fp) ; ++i)
-         fscanf(fp,"%d",a+i);
- 
-     //close the file
-     fclose (fp);
+    // Check for correct number of command line arguements
+    if(argc < 4) {
+    fprintf(stderr,"Usage is %s <infile> <N>\n",argv[0]);
+    fprintf(stderr,"\t infile - name of the file that contains the numbers\n");
+    fprintf(stderr,"\t      N - number of elements in the file\n");
+    fprintf(stderr,"\toutfile - output file that stores sorted numbers\n");
+    exit(1);
+    }
 
-     if(i<N){
-         printf("Only %d values are read from file ", i);
-         N = i;
-     }
+    //Assign Command line arguements
+    char *infile = argv[1];
+    int N = atoi(argv[2]);
+    char *outfile = argv[3];
 
-     merge_sort(a,N);
-     //check the values : Uncomment only for small files
-     /*for (i = 0;i<N  ; ++i) {
-         printf("a[%d] =%3d\n", i,a[i]);
-     }*/
-     
-     //Write to the output file
-     fp = fopen(outfile,"w"); // open output file
-     if(fp == NULL) {         // check if the command was successful
-           fprintf(stderr,"ERROR: Cannot open file <<%s>> \n",infile);
-           exit(1);
-     }
-     
-     //Write sorted values to output file
-     for (i = 0;i<N  ; ++i)
-         fprintf(fp,"%d\n",a[i]);
-     fclose(fp);
+    //Read Input File 
+    int *a = NULL ; //Array to store values read from the file
+    FILE *fp = fopen(infile,"r"); //Open input file
+    if(fp == NULL) {             //check if opening was successful
+         fprintf(stderr,"ERROR: Cannot open file <<%s>> \n",infile);
+         exit(1);
+    }
+    //allocating memory to read the values
+    a = (int*) malloc(N*sizeof(int));
 
-     free(a);
+    int i = 0;
+    // Reading values to the array
+    for (i = 0;i<N && !feof(fp) ; ++i)
+       fscanf(fp,"%d",a+i);
+
+    //close the file
+    fclose (fp);
+
+    if(i<N){
+       printf("Only %d values are read from file ", i);
+       N = i;
+    }
+
+    merge_sort(a,N);
+    //check the values : Uncomment only for small files
+    /*for (i = 0;i<N  ; ++i) {
+       printf("a[%d] =%3d\n", i,a[i]);
+    }*/
+
+    //Write to the output file
+    fp = fopen(outfile,"w"); // open output file
+    if(fp == NULL) {         // check if the command was successful
+         fprintf(stderr,"ERROR: Cannot open file <<%s>> \n",infile);
+         exit(1);
+    }
+
+    //Write sorted values to output file
+    for (i = 0;i<N  ; ++i)
+       fprintf(fp,"%d\n",a[i]);
+    fclose(fp);
+
+    free(a);
 }
 
 
@@ -95,11 +95,11 @@ void merge_sort(int *A, int N){
    //Copy the first Nb elements to B
    //next Nc elements to C
 
-   for(i=0;i<N;i++){
-	if(i<Nb)
-		*(B+i) = *(A+i);
-	else
-		*(C+i-Nb) = *(A+i);
+    for(i=0;i<N;i++){
+        if(i<Nb)
+    		*(B+i) = *(A+i);
+	    else
+	        *(C+i-Nb) = *(A+i);
 	}
 
    //TODO Do recursive sorting on arrays B and C

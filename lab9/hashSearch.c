@@ -1,5 +1,5 @@
 // Assignment 7 : Find missing words in the dictionary (Hash Table)
-// Authors	: 
+// Authors	: 15EC250, 15EC251
 // Date 	:
 
 #include <stdlib.h>
@@ -109,9 +109,7 @@ int main(int argc, char* argv[])
         isFound = searchTable(HT, word, M, K);
         if(isFound == 0){
             ROOT_HT = insertToTree(ROOT_HT, word);
-	//printf("%s is not in HT!\n",word);
         }
-	//printf("%s is there in HT!\n",word);
         fscanf(in, "%s", word); 
     }
     end1 = clock();
@@ -200,7 +198,6 @@ void inOrder(NodePtr ROOT, FILE *f){
 	if(!ROOT)
 		return;
 	inOrder(ROOT->left,f);
-	//printf("%s, ",ROOT->W);
 	fprintf(f,"%s\n",ROOT->W);
 	inOrder(ROOT->right,f);
 }
@@ -238,16 +235,17 @@ ulong computeKey(char *word)
 //-------------------------------------------------------------------------------//
 int DoubleHash(char** H, char *word, int M, int K,int i)
 {
-	ulong key = computeKey(word);
-	int ans = (int)(key%M);
-	if(i==0)
-		return ans;
-	else{
-		return (ans+(i*(1+(key%K))))%M;
-	}
  // Apply double hashing function as follows
 	// H1(key) = key % M
-	// H2(key) = 1 + key%K  
+	// H2(key) = 1 + key%K 
+
+    ulong key = computeKey(word);
+    int ans = (int)(key%M);
+    if(i==0)
+        return ans;
+    else{
+        return (ans+(i*(1+(key%K))))%M;
+    }
 }
 
 
@@ -262,22 +260,22 @@ int DoubleHash(char** H, char *word, int M, int K,int i)
 //-------------------------------------------------------------------------------//
 void insertToHashTable(char **H, char* word, int M, int K)
 {
-	int hashIndex=1;
-	int loc = DoubleHash(H, word, M, K,0);
-    	while(strcmp(H[loc],"_") && hashIndex<11){
-		loc = DoubleHash(H,word,M,K,hashIndex);
-		hashIndex++;
-	}
-//	printf("The locn returnd for %s is %d for hI=%d\n",word,loc,hashIndex);
-
-     // TODO : finish the function
+    // TODO : finish the function
     // Find the numeric key of the given word
 	// Apply double hashing function as follows
 	// H1(key) = key % M
 	// H2(key) = 1 + key%K
     // Check if that location is empty
     // if so, insert there, else apply collision resolution by double hashing
-	strcpy(H[loc],word);
+    
+    int hashIndex=1;
+    int loc = DoubleHash(H, word, M, K,0);
+    while(strcmp(H[loc],"_")){
+        loc = DoubleHash(H,word,M,K,hashIndex);
+        hashIndex++;
+    }  
+    strcpy(H[loc],word);
+
 }
 
 

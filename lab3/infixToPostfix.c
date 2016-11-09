@@ -55,66 +55,46 @@ int main(int argv, char* argc[]){
         	exit(1);
     	}
 	    
-    	char c,post[100],dump;
-    	char * cp;	
-    	cp=post;
-    	int len, res;
+    char c,post[100],dump;
+    char * cp;	
+    cp=post;
+    int len, res;
 
    	StackPtr sp=initStack();
 	StackPtr temp = initStack(); 
-    	push(temp,'#');
+    push(temp,'#');
 	c = fgetc(IN);
     
 	int i=0;
     	// Read character-by-character
    	while(!feof(IN)){
-        	if(c == ' ' || c == '\r' || c == '\n'); // Do nothing
+       	if(c == ' ' || c == '\r' || c == '\n'); // Do nothing
 	
-	//To Do: Complete the logic for infix to PostFix conversion using stack
-        // ------------------------------------------------
 		if(c=='('){
 			push(temp,c);
 		}
 		else if(c==')'){
 			while(peek(temp)!='('){
 				push(sp,pop(temp));
-	
 			}
-			
 			dump = pop(temp);
 		}
-        	else if(isInteger(c)!=-1){
-			push(sp,c);
-			
+        else if(isInteger(c)!=-1){
+			push(sp,c);	
 		} 
 		else if(isOperator(c)){
 			while(precedence(peek(temp))>=precedence(c)){
-				push(sp,pop(temp));
-				
+				push(sp,pop(temp));				
 			}
 			push(temp,c);
 		}           
-
-        // -----------------------------------------------
-	c = fgetc(IN);
+		c = fgetc(IN);
    	}//end while
-
 	while(!isEmpty(temp))
 		push(sp,pop(temp));
 	dump = pop(sp);
-
 	
 	print_stack(sp);
-
-
-//To print the postfix expression from char array. 
-//len is to be obtained from previous loop
-
-    /*printf("\n The postfix expresion is  \n");            
-    for(i=0;i<len;i++)
-	printf("%c",cp[i]);
-     printf("\n");
-	*/
 
     fclose(IN);
 }

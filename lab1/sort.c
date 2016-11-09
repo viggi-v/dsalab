@@ -1,16 +1,16 @@
 /***********************************************
 DSA Lab Experiment 1:
     Sort a set of Roll number name pairs
-    Input : file with roll numbers and Names 
-            Each line has the following form 
+    Input : file with roll numbers and Names
+            Each line has the following form
             10EC20 ANMOL J B
 
     Output: File containing the roll numbers
             and names in sorted order
+    
+    Done on 17.08.2016 by 15EC250 and 15EC251
+
 ***********************************************/
-/*
- * Done on 17.08.2016 by 15EC250 and 15EC251
- */
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -29,10 +29,10 @@ void SelectionSort(ClassData A[],int n);
 void WriteData(ClassData A[], char* file_name,int len);
 void ReadData(char* file_name,int *len, ClassData A[]);
 
-// The main code execution 
-// The input file name, output file name and 
-// maximum number of lines from the input 
-// file are read from the command line 
+// The main code execution
+// The input file name, output file name and
+// maximum number of lines from the input
+// file are read from the command line
 int main(int argc,char *argv[])
 {
    ClassData *A = NULL;
@@ -48,35 +48,35 @@ int main(int argc,char *argv[])
    }
    else
    {
-      // Read the commandline arguments 
+      // Read the commandline arguments
       char* file_name_input=argv[1];
       char* file_name_output=argv[2];
       int N =atoi(argv[3]);
 
-      //Allocation of the Array; 
+      //Allocation of the Array;
       A = (ClassData *) malloc(N*sizeof(ClassData));
 
-      //Read Input Data         
+      //Read Input Data
       ReadData(file_name_input,&N,A);
 
-      //Sort the data 
+      //Sort the data
       start = clock();
       //BubbleSort(A, N);
       SelectionSort(A,N);
       end=clock();
       CPU_time_used = ((double)(end-start))/CLOCKS_PER_SEC;
-      //Write output file 
+      //Write output file
       printf("The time used for execution:%f\n",CPU_time_used);
       WriteData(A, file_name_output,N);
 
-      //release the memory 
+      //release the memory
       free (A);
       return 0;
    }
 }
-/* Function reads the input file. 
-   First a roll number is read from the line. 
-   Whatever white space following the roll number is 
+/* Function reads the input file.
+   First a roll number is read from the line.
+   Whatever white space following the roll number is
    ignored. Rest of the line is treated as the name field
 */
 void ReadData(char* file_name,int *len, ClassData A[])
@@ -93,7 +93,7 @@ void ReadData(char* file_name,int *len, ClassData A[])
    char name[50];
    char rollno[10];
 
-   //Read the file 
+   //Read the file
    int n = 0;
    while (!feof(file))
    {
@@ -112,8 +112,9 @@ void ReadData(char* file_name,int *len, ClassData A[])
       //TODO comment this line later
       //printf("Name = %s Roll number = %s\n",  name, rollno);
    }
-/*  Print all the information in output file 
-*/
+/*
+ * Print all the information in output file
+ */
 void WriteData(ClassData A[], char* file_name,int len)
 {
    FILE* file;
@@ -131,7 +132,7 @@ void WriteData(ClassData A[], char* file_name,int len)
       fprintf(file,"%s %s\n", A[i].RollNumber,A[i].Name);
    }
 
-   //close the file 
+   //close the file
    fclose(file);
 
 }
@@ -152,9 +153,8 @@ void BubbleSort(ClassData A[], int n)
 {
         int i,j;
         for(i=0;i<n-1;i++){
-                //printf("%s\t%d\n",A[i].RollNumber,parseInt(A[i].RollNumber,4));
                 for(j=0;j<n-i-1;j++){
-                        //First compare the first two chars , then the next two and only then the last three.           
+                        //First compare the first two chars , then the next two and only then the last three.
                         if(parseInt(A[j].RollNumber)>parseInt(A[j+1].RollNumber)){
                                 //Swap
                                 ClassData temp;
@@ -185,5 +185,3 @@ void SelectionSort(ClassData A[],int n){
         }
 
 }
-
-
