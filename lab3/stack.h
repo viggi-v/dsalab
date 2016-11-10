@@ -1,9 +1,9 @@
 /* Objective    : To create Stack package that performs functions
 
-Initialize Stack 	I/P:NIL 			O/P:StackPtr
+Initialize Stack 	I/P:NIL 			        O/P:StackPtr
 Push StackData 		I/P:StackPtr & StackData 	O/P:Void 
-Pop Stack 		I/P:StackPtr 			O/P:StackData
-IsEmpty Stack		I/P:StackPtr			O/P:int
+Pop Stack 		    I/P:StackPtr 			    O/P:StackData
+IsEmpty Stack		I/P:StackPtr			    O/P:int
 
 StackData defined in application.
 Author         : Aparna P.

@@ -174,11 +174,12 @@ NodePtr insertToTree(NodePtr ROOT, char *word)
 	}	
 	if(!strcmp(ROOT->W,word))
 		return ROOT;
-	else if(strcmp(ROOT->W,word)<1)
+	else if(strcmp(ROOT->W,word)<0)
 		ROOT->right = insertToTree(ROOT->right,word);
 	else
 		ROOT->left = insertToTree(ROOT->left,word);
-	return ROOT;
+	
+    return ROOT;
 }
 
 
@@ -275,7 +276,6 @@ void insertToHashTable(char **H, char* word, int M, int K)
         hashIndex++;
     }  
     strcpy(H[loc],word);
-
 }
 
 
